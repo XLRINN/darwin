@@ -10,7 +10,7 @@ outputs =  {self,nixpkgs, ...}:
         lib = nixpkgs.lib;
 in {
     nixosConfigurations = {
-        nix-xlrin = lib.nixosSystem {
+        nixos = lib.nixosSystem {
             system = "x86_64-linux";
             modules = [ ./configuration.nix];
         };
