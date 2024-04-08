@@ -16,14 +16,29 @@
       nixosConfigurations = {
         nixos = lib.nixosSystem {
           inherit system;
-          modules = [ ./configuration.nix ];
-        };
+          modules = [
+            (
+              { config, pkgs, ... }:
+              {
+                # imagine copying the entirety of your
+                # configuration.nix here
+              }
+            )
+          ];
+        }
       };
       homeConfigurations = {
         david = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ ./home.nix ];
-        };
+          modules = [
+            (
+              { config, pkgs, ... }:
+              {
+                # imagine copying the entirety of your
+                # home.nix here
+              }
+            )
+          ];
+        }
       };
-    };
 }

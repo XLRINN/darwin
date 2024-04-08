@@ -8,6 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      #  <home-manager/nixos>
+
     ];
 
   # Bootloader.
@@ -52,7 +54,7 @@
 
   # Enable the KDE Plasma Desktop Environment.
   #services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  #services.xserver.desktopManager.plasma5.enable = true;
 
     # Enable cosmic
     #services.displayManager.cosmic-greeter.enable = true;
@@ -60,7 +62,7 @@
    
 
    # enable pantheon
-     # services.xserver.desktopManager.pantheon.enable = true;
+      services.xserver.desktopManager.pantheon.enable = true;
       services.pantheon.apps.enable = false;
 
       #services.xserver.desktopManager.pantheon.extraWingpanelIndicators;
@@ -68,6 +70,10 @@
 
 ################################ DesktopManagers######################
 
+#################zsh
+		environment.shells = with pkgs; [ zsh ];
+		users.defaultUserShell = pkgs.zsh;
+		programs.zsh.enable = true;
 
 
   # Configure keymap in X11
@@ -117,7 +123,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    home-manager 
+    neovim
     wget
     curl
     git
@@ -131,7 +138,15 @@
     bitwarden
     xrdp 
     ddgr
-
+    rofi
+    zsh
+    ranger
+    pcmanfm
+    discord
+    spotify
+    tmux
+    lynx
+    python3
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
