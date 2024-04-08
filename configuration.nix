@@ -50,8 +50,13 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  #services.xserver.displayManager.sddm.enable = true;
+  #services.xserver.desktopManager.plasma5.enable = true;
+
+    # Enable cosmic
+  services.xserver.desktopManager.cosmic.enable = true;
+  services.xserver.displayManager.cosmic-greeter.enable = true;
+
 
   # Configure keymap in X11
   services.xserver = {
@@ -112,7 +117,9 @@
     alacritty
     bottles
     bitwarden
-    duckduckgo
+    xrdp 
+    ddgr
+    
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

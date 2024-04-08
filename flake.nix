@@ -1,21 +1,28 @@
 {
-description = "first flake";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-inputs = {
-    nixpkgs.url = "nixpkgs/nixos-23.05";
-};
-
-outputs =  {self,nixpkgs, ...}:
-    let    
-        lib = nixpkgs.lib;
-in {
-    nixosConfigurations = {
-        nixos = lib.nixosSystem {
-            system = "x86_64-linux";
-            modules = [ ./configuration.nix];
-        };
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
+  };
 
- };
-
+  outputs = { self, nixpkgs, nixos-cosmic }: {
+    nixosConfigurations = {
+      # NOTE: change "host" to your system's hostname
+      nixos = nixpkgs.lib.nixosSystem {
+        modules = [
+          {
+            nix.settings = {
+              substituters = [ "https://cosmic.cachix.org/" ];
+              trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+            };
+          }
+          nixos-cosmic.nixosModules.default
+          ./configuration.nix
+        ];
+      };
+    };
+  };
 }
