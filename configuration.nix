@@ -46,16 +46,28 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+################################ DesktopManagers######################
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
   #services.xserver.displayManager.sddm.enable = true;
-  #services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
 
     # Enable cosmic
-  services.xserver.desktopManager.cosmic.enable = true;
-  services.xserver.displayManager.cosmic-greeter.enable = true;
+    #services.displayManager.cosmic-greeter.enable = true;
+    #services.desktopManager.cosmic.enable = true;
+   
+
+   # enable pantheon
+     # services.xserver.desktopManager.pantheon.enable = true;
+      services.pantheon.apps.enable = false;
+
+      #services.xserver.desktopManager.pantheon.extraWingpanelIndicators;
+      #services.xserver.desktopManager.pantheon.extraSwitchboardPlugs;
+
+################################ DesktopManagers######################
+
 
 
   # Configure keymap in X11
@@ -119,7 +131,7 @@
     bitwarden
     xrdp 
     ddgr
-    
+
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
