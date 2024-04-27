@@ -64,7 +64,7 @@ config = {
 
   systemd.services.mount-nfs.serviceConfig = {
     Type = "oneshot";
-    ExecStart = "${pkgs.nfs-utils}/bin/mount /mnt/nfs";
+    ExecStart = "${pkgs.nfs-utils}/bin/mount /media";
   };
 };
 
