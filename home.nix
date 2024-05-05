@@ -5,7 +5,7 @@ let
 	      home = "home-manager switch --flake /home/david/.dotnix/.";
          fixnix = "nvim /home/david/.dotnix/configuration.nix";
 	      fixhome = "nvim /home/david/.dotnix/home.nix";
-	      update = "sudo nixos-rebuild switch --flake /home/david/.nixconfig/. && home-manager switch --flake /home/david/.nixconfig/.";
+	      update = "sudo nixos-rebuild switch --flake /home/david/.dotnix/. && home-manager switch --flake /home/david/.nixconfig/.";
          nf = "neofetch";
          trash = "sudo nix-collect-garbage -d";
    };
