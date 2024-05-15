@@ -78,8 +78,8 @@ config = {
 
   #GDM
   services.xserver.displayManager.gdm.enable = true;
-  #services.xserver.desktopManager.gnome.enable = true;
-  #services.gnome.core-utilities.enable = false;
+  services.xserver.desktopManager.gnome.enable = true;
+  services.gnome.core-utilities.enable = false;
 
   # Enable the KDE Plasma Desktop Environment.
   #services.xserver.displayManager.sddm.enable = true;
@@ -95,15 +95,15 @@ config = {
       #services.pantheon.apps.enable = false;
      #services.xserver.desktopManager.pantheon.extraWingpanelIndicators = true;
      #services.xserver.desktopManager.pantheon.extraSwitchboardPlugs = true;
-      services.xserver.displayManager.lightdm.greeters.pantheon.enable = false;
-      services.xserver.displayManager.lightdm.enable = false;
+      #services.xserver.displayManager.lightdm.greeters.pantheon.enable = false;
+      #services.xserver.displayManager.lightdm.enable = false;
 
     #hyperland
     programs.hyprland.enable = true;
     #programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 
     #deepin
-    services.xserver.desktopManager.deepin.enable = true;
+    #services.xserver.desktopManager.deepin.enable = true;
 
 
 
@@ -176,7 +176,7 @@ config = {
     xrdp
     ddgr
     zsh
-    #ranger
+    ranger
     tmux
     lynx
     alacritty
