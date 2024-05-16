@@ -54,19 +54,6 @@
 ##############nfs#############
 
 
-# Mount NFS share
-config = {
-  fileSystems."/mnt/nfs" = {
-    device = "192.168.69.5:/mnt/Alexandria";
-    fsType = "nfs";
-    options = "rw";
-  };
-
-  systemd.services.mount-nfs.serviceConfig = {
-    Type = "oneshot";
-    ExecStart = "${pkgs.nfs-utils}/bin/mount /media";
-  };
-};
 
 
 ###############################
@@ -78,16 +65,16 @@ config = {
 
   #GDM
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.gnome.core-utilities.enable = false;
+  #services.xserver.desktopManager.gnome.enable = true;
+  #services.gnome.core-utilities.enable = false;
 
   # Enable the KDE Plasma Desktop Environment.
   #services.xserver.displayManager.sddm.enable = true;
   #services.xserver.desktopManager.plasma5.enable = true;
 
     # Enable cosmic
-    #services.displayManager.cosmic-greeter.enable = true;
-    #services.desktopManager.cosmic.enable = true;
+    services.displayManager.cosmic-greeter.enable = true;
+    services.desktopManager.cosmic.enable = true;
 
 
    # enable pantheon
@@ -103,7 +90,7 @@ config = {
     #programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 
     #deepin
-    #services.xserver.desktopManager.deepin.enable = true;
+    services.xserver.desktopManager.deepin.enable = true;
 
 
 
@@ -194,7 +181,6 @@ config = {
     spotify
     python3
     wofi
-    atom
     zoxide
     zoom
     dolphin
@@ -224,11 +210,7 @@ config = {
   # Or disable the firewall altogether.
    networking.firewall.enable = false;
 
-# Mount the NFS
-  fileSystems."/Alexandria" = {
-    device = "192.168.69.5:/mnt/Alexandria";
-    fsType = "nfs";
-  };
+
 
 
   # This value determines the NixOS release from which the default
