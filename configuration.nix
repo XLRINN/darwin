@@ -65,16 +65,16 @@
 
   #GDM
   services.xserver.displayManager.gdm.enable = true;
-  #services.xserver.desktopManager.gnome.enable = true;
-  #services.gnome.core-utilities.enable = false;
+  services.xserver.desktopManager.gnome.enable = true;
+  services.gnome.core-utilities.enable = false;
 
   # Enable the KDE Plasma Desktop Environment.
   #services.xserver.displayManager.sddm.enable = true;
   #services.xserver.desktopManager.plasma5.enable = true;
 
     # Enable cosmic
-    services.displayManager.cosmic-greeter.enable = true;
-    services.desktopManager.cosmic.enable = true;
+    #services.displayManager.cosmic-greeter.enable = true;
+    #services.desktopManager.cosmic.enable = true;
 
 
    # enable pantheon
@@ -90,7 +90,7 @@
     #programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 
     #deepin
-    services.xserver.desktopManager.deepin.enable = true;
+    #services.xserver.desktopManager.deepin.enable = true;
 
 
 
@@ -163,11 +163,12 @@
     xrdp
     ddgr
     zsh
-    ranger
+    #ranger
     tmux
     lynx
     alacritty
     docker
+    fish
 
     ########GUI#######
     vscode
@@ -187,7 +188,7 @@
     doublecmd
     chromium
     kitty
-
+    microsoft-edge
 
   ];
 

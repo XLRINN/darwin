@@ -1,13 +1,18 @@
 { config, pkgs, ... }:
 let
    myAliases = {
-      	nixupdate = "sudo nixos-rebuild switch --flake /home/david/.dotnix/.";
+      	nix-switch = "sudo nixos-rebuild switch --flake /home/david/.dotnix/.";
+         nix-boot = "sudo nixos-rebuild boot --flake /home/david/.dotnix/.";
+         nix-test = "sudo nixos-rebuild test --flake /home/david/.dotnix/.";
+
 	      home = "home-manager switch --flake /home/david/.dotnix/.";
          fixnix = "nvim /home/david/.dotnix/configuration.nix";
 	      fixhome = "nvim /home/david/.dotnix/home.nix";
 	      update = "sudo nixos-rebuild switch --flake /home/david/.dotnix/. && home-manager switch --flake /home/david/.nixconfig/.";
          nf = "neofetch";
          trash = "sudo nix-collect-garbage -d";
+      
+
    };
 in
 {
