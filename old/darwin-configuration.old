@@ -1,0 +1,40 @@
+{ config,pkgs,  ... }:
+
+{
+  # List packages installed in system profile. To search by name, run:
+  # $ nix-env -qaP | grep wget
+
+nixpkgs.config.allowUnfree = true; 
+ # nixconfig.allowBroken = true;
+#  nixconfig.allowUnsupportedSystem = true;   
+  environment.systemPackages = with pkgs; [
+     vim
+     zoxide
+     thefuck
+     ranger
+     neovim
+     ddgr
+    firefox-bin
+   # microsoft-edge
+     alacritty
+     tmux
+     bitwarden-desktop
+      home-manager
+    ];
+
+  # Use a custom configuration.nix location.
+  # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixdarwin/configuration.nix
+  # environment.darwinConfig = "$HOME/.config/nixdarwin/configuration.nix";
+
+  # Auto upgrade nix package and the daemon service.
+  services.nix-daemon.enable = true;
+  # nix.package = nix;
+
+  # Create /etc/zshrc that loads the nix-darwin environment.
+  programs.zsh.enable = true;  # default shell on catalina
+  # programs.fish.enable = true;
+
+  # Used for backwards compatibility, please read the changelog before changing.
+  # $ darwin-rebuild changelog
+  system.stateVersion = 4;
+}

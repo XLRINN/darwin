@@ -1,0 +1,30 @@
+{
+  description = "DARWIN-LOKI";
+
+  inputs = {
+    nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
+    home-manager.url = "github:nix-community/home-manager";
+    darwin.url = "github:LnL7/nix-darwin";
+  };
+
+  outputs = { self, nixpkgs, home-manager, darwin, ... }:
+    let
+      system = "x86_64-darwin";
+      pkgs = import nixpkgs { system = system; };
+    in {
+      homeConfigurations = {
+        david = {
+          pkgs = pkgs;
+          modules = [ ./home.nix ];
+        };
+      };
+
+      darwinConfigurations = {
+        loki = {
+          system = system;
+          modules = [ ./darwin-configuration.nix ];
+        };
+      };
+    };
+}
+

@@ -1,0 +1,52 @@
+{
+  description = "DARWIN-LOKI";
+
+  inputs = {
+    nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
+    darwin.url = "github:LnL7/nix-darwin";
+
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
+
+    home-manager.url = "github:nix-community/home-manager/master";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
+  };
+
+  outputs = { self, nixpkgs, home-manager,nixpkgs-firefox-darwin ,darwin, ... }:
+    let
+      system = "x86_64-darwin";
+      pkgs = import nixpkgs { system = system; };
+      darwinConfig = import ./darwin-configuration.nix;
+      systemValue = builtins.getAttr system darwin.lib.systems;
+    in {
+      homeConfigurations = {
+        david = {
+          pkgs = pkgs;
+          modules = [ ./home.nix ];
+        };
+      };
+
+      darwinConfigurations = {
+        loki = darwin.lib.darwinSystem {
+          system = "x86_64-darwin";
+          modules = [
+            home-manager.darwinModules.home-manager
+            {
+              nixpkgs.overlays = [ nixpkgs-firefox-darwin.overlay ];
+              home-manager.users.david = {
+                programs.firefox = {
+                  enable = true;
+
+                  # IMPORTANT: use a package provided by the overlay (ends with `-bin`)
+                  # see overlay.nix for all possible packages
+                  package = pkgs.firefox-bin; # Or pkgs.librewolf if you're using librewolf
+                };
+              };
+            }
+          ];
+        };
+      };
+    };
+}
+
